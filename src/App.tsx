@@ -3,6 +3,7 @@ import {Plus,FolderOpen,MessageSquare,Settings,ArrowUp,Square,Globe,FileText,Che
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {api,connect,url,isWeb,Project,Chat,Message,Artifact,Trace} from './api';
+import PlatformLink from './PlatformLink';
 import AccountGate, {Account} from './AccountGate';
 import ProjectFiles from './ProjectFiles';
 import logo from '../assets/logo.svg';
@@ -56,6 +57,7 @@ function Workspace({account}:{account:Account}){
    <button className="new-chat" disabled={!!run} onClick={newChat}><Plus size={18}/>新聊天</button>
    <div className="section-heading"><span>项目</span><button className="icon-button" aria-label="创建项目" disabled={!!run} onClick={()=>{setNotice('');setModal('project');}}><Plus size={16}/></button></div>
    <nav>{projects.map(p=><div key={p.id}><button className={'project-row '+(project?.id===p.id?'selected':'')} disabled={!!run} onClick={()=>chooseProject(p)}><Folder size={16}/><span>{p.name}</span>{project?.id===p.id?<ChevronDown size={13}/>:<ChevronRight size={13}/>}</button>{project?.id===p.id&&<div className="chat-list">{chats.map(c=><button disabled={!!run} className={chat?.id===c.id?'active':''} key={c.id} onClick={()=>loadChat(c)}><MessageSquare size={13}/><span>{c.title}</span></button>)}{chats.length===0&&<p>还没有聊天</p>}</div>}</div>)}{!projects.length&&<p className="sidebar-hint">创建项目，让资料和聊天有一个共同的起点。</p>}</nav>
+   <PlatformLink/>
    <div className="sidebar-bottom"><span className={'connection '+(ready?'connected':'')}/><span>{ready?(account.user?.username||'本地工作区'):'正在连接'}</span><button className="icon-button" aria-label="设置" onClick={()=>{setNotice('');setModal('settings');}}><Settings size={18}/></button></div>
   </aside>
   <main className="workspace"><header className="topbar"><button className="icon-button sidebar-toggle" aria-label="打开导航" aria-expanded={sidebarOpen} onClick={()=>setSidebarOpen(!sidebarOpen)}><PanelLeft size={19}/></button><div><span className="project-name">{project?.name||'你的研究工作区'}</span>{project&&window.biolens&&<button className="subtle-button" disabled={!!run} title={project.path||'此项目在本机尚未关联文件夹'} onClick={async()=>{try{const path=await window.biolens!.chooseDirectory();if(path){const updated=await api<Project>('/projects/'+project.id+'/local-path','POST',{path});setProject(updated);setProjects(old=>old.map(p=>p.id===updated.id?updated:p));setLocal(false);}}catch(e){setError((e as Error).message);}}}><FolderOpen size={14}/>{project.path?'本地目录':'关联本地目录'}</button>}{project&&isWeb&&<button className="subtle-button" onClick={()=>setShowProjectFiles(true)}><FolderOpen size={14}/>项目文件</button>}{chat&&<><span className="separator">/</span><span className="chat-title">{chat.title}</span></>}</div><button className={'subtle-button '+(showFiles?'chosen':'')} onClick={()=>setShowFiles(!showFiles)}><FileText size={16}/>成果{visibleFiles.length>0&&<span className="badge">{visibleFiles.length}</span>}</button></header>

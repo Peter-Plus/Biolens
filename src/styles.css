@@ -184,3 +184,8 @@ svg { flex-shrink: 0; }
 .project-file-list {max-height:320px;overflow:auto;margin-top:18px}.project-file-list>div{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #e5ece8;gap:16px}.project-file-list span{overflow-wrap:anywhere}.project-file-list small{display:block;color:#70847e;margin-top:4px}
 
 .preview-loading{padding:12px 20px;margin:0;color:#667477;font-size:13px}
+
+.platform-link {display:flex;align-items:center;gap:9px;padding:11px 12px;margin:8px 0;color:var(--accent);text-decoration:none;border-radius:8px;font-size:13px;flex-shrink:0;}
+.platform-link:hover {background:var(--accent-soft);}
+.platform-link:focus-visible {outline:2px solid var(--accent);outline-offset:2px;}
+.auth-form .platform-link {justify-content:center;margin:8px 0 0;border-top:1px solid var(--line);border-radius:0;padding-top:18px;}

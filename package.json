@@ -1,6 +1,6 @@
 {
   "name": "biolens",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "BioLens biomedical analysis and visualization agent",
   "author": "BioLens",
@@ -36,7 +36,7 @@
     "appId": "org.biolens.desktop",
     "productName": "BioLens",
     "directories": {
-      "output": "release/0.3.0"
+      "output": "release/0.3.1"
     },
     "files": [
       "dist/**/*",

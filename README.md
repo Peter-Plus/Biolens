@@ -6,7 +6,7 @@
 
 网页版：[biolens.worldlinesite.com](https://biolens.worldlinesite.com)。与桌面共用账号和聊天；网页版通过“项目文件”上传资料，在服务器分析并生成报告。桌面版继续读取本地目录。
 
-本机已构建后，双击 `启动BioLens.cmd`。独立分发版本运行 `release/0.3.0/win-unpacked/BioLens.exe`，注册或登录 BioLens 账号即可使用云端模型，无需填写 API Key。整个 `win-unpacked` 目录必须一起保留，不能只复制 exe。
+本机已构建后，双击 `启动BioLens.cmd`。独立分发版本运行 `release/0.3.1/win-unpacked/BioLens.exe`，注册或登录 BioLens 账号即可使用云端模型，无需填写 API Key。整个 `win-unpacked` 目录必须一起保留，不能只复制 exe。
 
 1. 创建项目并选择研究目录。选择目录不会自动读取文件。
 2. 正常聊天，按需开启“阅读本地项目”和“外部检索”。外部检索开启后，仍只有明确要求检索的消息才会调用 PubMed。

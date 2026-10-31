@@ -1,0 +1,49 @@
+{
+  "case": "no_implicit_search",
+  "run_id": "1ded7602cde84265bffb61e6583179cc",
+  "timestamp": "2026-10-25T16:27:25.185686+00:00",
+  "model": "qwen3.7-flash",
+  "request": {
+    "prompt": "用一句话解释NMF，不需要查资料。",
+    "local": false,
+    "external": true,
+    "mode": "chat",
+    "report_format": "html"
+  },
+  "seconds": 1.75,
+  "status": "completed",
+  "answer": "非负矩阵分解（NMF）是一种将高维非负数据矩阵近似分解为两个低维非负矩阵乘积的线性代数方法，其核心优势在于通过“加法组合”的方式提取具有部分-整体解释性的潜在特征模式。",
+  "events": [
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在理解需求"
+      }
+    },
+    {
+      "kind": "policy",
+      "payload": {
+        "external_enabled": true,
+        "explicit_request": false
+      }
+    },
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在思考与选择工具"
+      }
+    },
+    {
+      "kind": "answer",
+      "payload": {
+        "text": "非负矩阵分解（NMF）是一种将高维非负数据矩阵近似分解为两个低维非负矩阵乘积的线性代数方法，其核心优势在于通过“加法组合”的方式提取具有部分-整体解释性的潜在特征模式。"
+      }
+    },
+    {
+      "kind": "done",
+      "payload": {
+        "status": "completed"
+      }
+    }
+  ]
+}

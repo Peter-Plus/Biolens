@@ -1,0 +1,13 @@
+sample_id,group
+S01,control
+S02,control
+S03,control
+S04,control
+S05,control
+S06,control
+S07,simulated_case
+S08,simulated_case
+S09,simulated_case
+S10,simulated_case
+S11,simulated_case
+WRONG_SAMPLE,simulated_case

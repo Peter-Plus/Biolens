@@ -1,0 +1,11 @@
+import { spawn } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
+const root = process.cwd();
+const cfgPath=path.join(root,'.local','dev.json');
+const cfg=existsSync(cfgPath)?JSON.parse(readFileSync(cfgPath,'utf8')):{};
+const candidates = [process.env.BIOLENS_PYTHON, cfg.python, path.join(root,'runtime/python/python.exe'), path.join(root,'.venv/Scripts/python.exe')];
+const python = candidates.find(p => p && existsSync(p));
+if (!python) throw new Error('请先运行 scripts/setup.ps1，或设置 BIOLENS_PYTHON。');
+const proc = spawn(python, process.argv.slice(2), {stdio:'inherit', windowsHide:true, env:{...process.env,PYTHONPATH:[path.join(root,'backend'),path.join(root,'.local','pylibs')].join(path.delimiter),PYTHONUTF8:'1',BIOLENS_DATA:cfg.data||path.join(root,'.local','data'),PLAYWRIGHT_BROWSERS_PATH:cfg.browsers||path.join(root,'.local','browsers')}});
+proc.on('exit', c => process.exit(c ?? 1));

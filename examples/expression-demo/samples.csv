@@ -1,0 +1,13 @@
+sample_id,group,batch
+S01,control,A
+S02,control,B
+S03,control,A
+S04,control,B
+S05,control,A
+S06,control,B
+S07,simulated_case,A
+S08,simulated_case,B
+S09,simulated_case,A
+S10,simulated_case,B
+S11,simulated_case,A
+S12,simulated_case,B

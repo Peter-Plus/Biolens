@@ -1,0 +1,9 @@
+import {useEffect,useState} from 'react';
+import {api,uploadFile} from './api';
+export default function ProjectFiles({projectId,busy,onChanged,onClose}:{projectId:string;busy:boolean;onChanged:()=>Promise<void>;onClose:()=>void}){
+ const [files,setFiles]=useState<{name:string;bytes:number}[]>([]),[working,setWorking]=useState(false),[message,setMessage]=useState('');
+ const refresh=async()=>setFiles(await api('/projects/'+projectId+'/files'));
+ useEffect(()=>{refresh().catch(e=>setMessage(e.message));},[projectId]);
+ async function upload(selected:FileList|null){if(!selected)return;setWorking(true);setMessage('正在上传…');try{for(const file of Array.from(selected)){setMessage('正在上传 '+file.name);await uploadFile(projectId,file);}await refresh();await onChanged();setMessage('上传完成。开启“项目资料”后，Agent 才能读取。');}catch(e){setMessage((e as Error).message);}finally{await refresh();await onChanged();setWorking(false);}}
+ return <div className="modal-overlay"><section className="modal" role="dialog" aria-label="项目文件" aria-modal="true"><header><h2>项目文件</h2><button onClick={onClose} aria-label="关闭项目文件">关闭</button></header><p>上传到当前账号的云端项目。支持 CSV、TSV、PDF、MD、TXT；单文件 100 MB，账号总量 500 MB。</p><label>添加资料<input aria-label="上传项目文件" type="file" multiple accept=".csv,.tsv,.pdf,.md,.txt" disabled={busy||working} onChange={e=>{upload(e.target.files);e.target.value='';}}/></label><div className="project-file-list">{files.length?files.map(f=><div key={f.name}><span>{f.name}<small>{(f.bytes/1024).toFixed(1)} KB</small></span><button disabled={busy||working} onClick={async()=>{try{await api('/projects/'+projectId+'/files/'+encodeURIComponent(f.name),'DELETE');await refresh();onChanged();}catch(e){setMessage((e as Error).message);}}}>删除</button></div>):<p>还没有上传资料。</p>}</div>{message&&<p role="status">{message}</p>}</section></div>;
+}

@@ -1,0 +1,12 @@
+{
+  "source": "https://github.com/bioc/pasilla/tree/RELEASE_3_21/inst/extdata",
+  "package_doi": "10.18129/B9.bioc.pasilla",
+  "publication_pmid": "20921232",
+  "transformation": "log2(count / sample_total * 1e6 + 1), all genes retained; exploratory library-size scaling, not DESeq2 normalization",
+  "genes": 14599,
+  "samples": 7,
+  "source_sha256": {
+    "pasilla_gene_counts.tsv": "ea0dafbfcc600559644cfe7dd5cc8de809d631eb64ba3089aaa25c2fa0954dad",
+    "pasilla_sample_annotation.csv": "1844f871ca5d750f41685c73b87bd7dda291ec0d52304c1afb46a17ae88db745"
+  }
+}

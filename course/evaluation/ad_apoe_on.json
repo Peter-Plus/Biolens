@@ -1,0 +1,123 @@
+{
+  "case": "ad_apoe_on",
+  "run_id": "f2f05fe87f204195a736b9a27f3c921b",
+  "timestamp": "2026-10-25T16:26:59.684319+00:00",
+  "model": "qwen3.7-flash",
+  "request": {
+    "prompt": "请在PubMed检索APOE与阿尔茨海默病风险的研究。用不超过500字解释遗传风险关联与确定性诊断之间的区别，并给出可核查引用。",
+    "local": false,
+    "external": true,
+    "mode": "chat",
+    "report_format": "html"
+  },
+  "seconds": 8.31,
+  "status": "completed",
+  "answer": "APOE ε4 等位基因是晚发型阿尔茨海默病（AD）最强的遗传风险因子，但它代表的是**概率性风险**而非**确定性诊断**。\n\n1.  **遗传风险关联（Risk Association）**：携带 APOE ε4 会显著增加患病几率。例如，一项基于 ADNI 队列的研究指出，APOE ε4 携带者血浆 p-tau217 的上升轨迹更陡峭，且这种效应主要直接作用于生物标志物变化，而非仅通过淀粉样蛋白介导 [PMID: 42909513]。另一项研究也证实了 APOE ε4 与淀粉样蛋白阳性及认知下降评分（CDR）升高密切相关 [PMID: 42926699]。然而，风险不等于发病：许多 ε4 携带者终身不患 AD，而部分非携带者也会患病。\n2.  **确定性诊断（Definitive Diagnosis）**：AD 的临床确诊通常依赖于排除其他病因后的综合评估，或脑内淀粉样蛋白/tau 病理的生物标志物证据，甚至需死后尸检确认神经原纤维缠结和老年斑。遗传检测本身不能确诊疾病，因为它无法反映环境因素、共病或其他未知遗传变异的影响。\n\n简言之，APOE 状态是评估“可能性”的工具，而确诊需要结合临床症状、影像学及病理生物标志物的综合判断。",
+  "events": [
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在理解需求"
+      }
+    },
+    {
+      "kind": "policy",
+      "payload": {
+        "external_enabled": true,
+        "explicit_request": true
+      }
+    },
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在思考与选择工具"
+      }
+    },
+    {
+      "kind": "tool_start",
+      "payload": {
+        "name": "search_pubmed",
+        "args": {
+          "query": "APOE Alzheimer's disease risk association",
+          "limit": 5
+        }
+      }
+    },
+    {
+      "kind": "tool_end",
+      "payload": {
+        "name": "search_pubmed",
+        "ok": true,
+        "result": {
+          "query": "APOE Alzheimer's disease risk association",
+          "total": 6588,
+          "papers": [
+            {
+              "pmid": "42926699",
+              "title": "Clinical utility of plasma APOE proteotyping for Alzheimer's disease risk and prognosis.",
+              "journal": "medRxiv : the preprint server for health sciences",
+              "year": "2026",
+              "abstract": "BACKGROUND: Alzheimer's disease (AD) is a complex neurodegenerative disorder strongly influenced by genetic factors, with apolipoprotein E (APOE) ε4 allele being the most established risk variant. Although DNA-based genotyping remains standard, plasma proteotyping may provide scalable, isoform-specific alternatives. Here, we aimed to investigate the clinical utility of APOE proteotyping as a surrogate for genotyping in different clinical and research cohorts.\nMETHODS: Plasma APOE4 protein were quantified using the NULISAseq CNS panel across four cohorts (ADRC, HeartSCORE, LATTICE, and ALPS). DNA-based APOE genotyping was the reference standard. Proteotyping thresholds for APOE ε4 carrier status and copy number were derived in ADRC and externally validated in the other cohorts. Logistic, proportional-odds, and Cox proportional-hazards models compared genotype- and proteotype-defined groups in relation to amyloid positivity, cross-sectional CDR global scores, and time to CDR-SB worsening, respectively.\nRESULTS: Plasma APOE4 accurately classified APOE ε4 carrier status in ADRC (AUC=0.977, 95%CI 0.967-0.985; threshold 5.78 NULISA protein quantification [NPQ] value) and achieved near-perfect external validation in HeartSCORE, LATTICE, and ALPS (all AUCs=1.000, 95%CI 1.000-1.000). Plasma APOE4 also well-differentiated heterozygous from homozygous ε4 carriers (ADRC AUC=0.879, 95%CI 0.834-0.921; threshold 12.23 NPQ value). Genotype- and proteotype-defined ε4 carrier status showed similar associations with amyloid positivity (OR=4.40 vs 4.45), higher CDR global scores (OR=1.50 for both), and CDR-SB worsening (HR=1.22 for both).\nDISCUSSION: Plasma APOE4 proteotyping accurately distinguished genotype-defined APOE ε4 carrier status and copy number while demonstrating AD-related associations comparable to DNA genotyping.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42926699/",
+              "evidence_scope": "摘要，非全文"
+            },
+            {
+              "pmid": "42926616",
+              "title": "Cell-Cell Communication Patterns in Alzheimer's Disease Differ by Cortical Layer.",
+              "journal": "medRxiv : the preprint server for health sciences",
+              "year": "2026",
+              "abstract": "INTRODUCTION: Existing cell-cell communication (CCC) studies of Alzheimer's disease dementia (ADD) using cortical snRNAseq data do not account for the distinct cell-type and gene-expression profiles within cortical layers. Cortical-layer-aware CCC analysis may clarify biological mechanisms associated with ADD and mild cognitive impairment (MCI).\nMETHODS: We applied our recent analytical tool STACCato to identify CCC events associated with ADD and MCI within cortical layers, using a large-scale prefrontal cortex snRNAseq dataset (∼1.4M nuclei, n=395) with cortical layers annotated from reference spatial transcriptomics data.\nRESULTS: We identified ADD/MCI-related CCC events with distinct patterns within cortical layers, including ADD-related interactions involving the known AD risk genes APOE and APP that were detected only in microglia in layer 5, and those with opposite effects of ADD and MCI in layers 5 and 6.\nDISCUSSION: Our findings on cortical-layer-aware ADD/MCI-related CCC events underscore the importance of spatially-aware genomics studies of AD.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42926616/",
+              "evidence_scope": "摘要，非全文"
+            },
+            {
+              "pmid": "42922720",
+              "title": "Chronic Liver-Specific LRP1 Silencing Drives Progressive Brain Amyloidosis, Neuroinflammation, and Behavioral Deficits in APP/PS1 Mice.",
+              "journal": "Research square",
+              "year": "2026",
+              "abstract": "Liver dysfunction is increasingly implicated in Alzheimer's disease (AD) pathogenesis, yet the underlying mechanisms remain poorly understood. Hepatic low-density lipoprotein receptor-related protein 1 (LRP1), the principal receptor mediating peripheral amyloid-beta (Aβ) clearance, is downregulated in chronic liver diseases. Using an AAV8-TBG hepato-specific silencing strategy in APP/PS1 mice, we previously demonstrated that 12 weeks of hepatic LRP1 silencing elevated soluble brain Aβ and locomotor hyperactivity without affecting insoluble Aβ, neuroinflammation, or cognition. Here, we extended silencing to 28 weeks to model hepatic LRP1 reduction with chronic liver dysfunction and assessed whether sustained hepatic LRP1 loss drives a more severe AD phenotype. Hepatic LRP1 was reduced by 70% with no off-target effects on brain or kidney LRP1, liver histology, or systemic inflammation, confirming liver specificity and safety. Prolonged silencing produced a time-dependent progression of brain Aβ accumulation, shifting from soluble to insoluble Aβ species from 12 to 28 weeks of hepatic LRP1 silencing. Elevated plasma Aβ42 was strongly and positively correlated with insoluble brain Aβ42 (r = 0.65, p < 0.05), supporting a liver-plasma-brain axis in modulating brain Aβ. Sustained hepatic LRP1 silencing was accompanied by reactive astrogliosis (p < 0.01), microglial transition to a disease-associated state (p < 0.05), increased brain ApoE (p < 0.05), and worsened locomotor hyperactivity (p < 0.05) and spatial memory impairment (p = 0.056). Mechanistically, hepatic LRP1 silencing transiently increased hepatic APP expression (p < 0.01) and elevated plasma ApoB48 (p < 0.05), suggesting dual contributions of reduced Aβ clearance and increased peripheral Aβ production. Absence of compensatory changes in other hepatic Aβ transporters confirms that the observed AD phenotypes are driven by alterations in hepatic LRP1. These findings underscore hepatic LRP1 as a critical regulator of Aβ pathology. Future work will further highlight the potential of hepatic LRP1 as a therapeutic target and perhaps as a biomarker for AD risk associated with liver disease.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42922720/",
+              "evidence_scope": "摘要，非全文"
+            },
+            {
+              "pmid": "42916742",
+              "title": "Mass Spectrometry-Based Structural Proteomics and Analytical Ultracentrifugation Characterize the Structures of Oligomeric Apolipoprotein E4 and Its Variants.",
+              "journal": "Journal of the American Society for Mass Spectrometry",
+              "year": "2026",
+              "abstract": "Apolipoprotein E4 (ApoE4), one of the three common isoforms of ApoE, differs from ApoE3 and ApoE2 by just one amino acid substitution each. Yet these changes in ApoE4 profoundly impact protein structure and function to make it the strongest genetic risk factor for late-onset Alzheimer's disease (AD). ApoE4 exhibits a tendency to form oligomers (e.g., tetramers) that complicate high-resolution structural characterization in aqueous environments. Very little is known about the self-associated oligomeric structures. In this study, we employed ultracentrifugation, native mass spectrometry (MS), and fast photochemical oxidation of proteins (FPOP), a mass spectrometry-based protein footprinting approach, to investigate conformational differences among wild-type ApoE4 and two of its mutant variants ApoE4(V236E) (Jacksonville, JV) and ApoE4(V236E/L268E) (VL). These substitutions shift the oligomeric equilibrium toward dimeric and monomeric states, respectively, and allow the tetramer state to be compared with the dimer and monomer. Comparative footprinting reveals that conformational changes driven by these mutations result in altered solvent accessibility in key regions of the protein, suggesting disruption of interfaces responsible for oligomerization and altered access of lipid-binding regions. Given ApoE4's central role in lipid metabolism and its altered interaction with lipid surfaces compared to other isoforms, these structural changes likely modulate lipid binding affinity and may contribute to its pathological role in AD. Our findings highlight the importance of conformational states in ApoE4 function and provide new insights into the structural basis of its disease-associated behavior.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42916742/",
+              "evidence_scope": "摘要，非全文"
+            },
+            {
+              "pmid": "42909513",
+              "title": "APOE ε4 accelerates plasma p-tau217 trajectory: a Bayesian joint longitudinal analysis of ADNI.",
+              "journal": "Neurological sciences : official journal of the Italian Neurological Society and of the Italian Society of Clinical Neurophysiology",
+              "year": "2026",
+              "abstract": "BACKGROUND AND OBJECTIVE: Plasma GFAP and p-tau217 are leading blood biomarkers for Alzheimer's disease (AD), but whether APOE ε4 modulates their longitudinal rates of change - directly or via amyloid burden - is unresolved. We tested APOE ε4 modulation of plasma GFAP and p-tau217 trajectories and their coupling with cognitive/structural decline in ADNI participants.\nMETHODS: A total of 325 ADNI participants aged ≥ 65 (CN 181/MCI 106/AD 38) with ≥ 2 plasma GFAP and ≥ 2 p-tau217 (UPENN-Fujirebio) measurements over ≤ 10 years were analyzed. Linear mixed-effects models tested APOE ε4 × time interactions; Bayesian joint models (brms) estimated random-slope correlations ρ between biomarker and outcome trajectories. A formal counterfactual mediation analysis quantified direct versus amyloid-mediated pathways.\nRESULTS: APOE ε4 was associated with a steeper p-tau217 slope (β = 0.0307/year, p = 0.002) but not GFAP slope (p = 0.149); p-tau217 co-varied with ADAS-Cog 13 (ρ = +0.67), MMSE (ρ = -0.69), and hippocampal ratio (ρ = - 0.39), while GFAP correlations were null, though the GFAP-paired joint models had convergence limitations. A formal mediation analysis found the APOE ε4 effect on p-tau217 slope was predominantly direct (ADE = 0.029, p < 0.001), with a small, only partially robust indirect pathway through baseline amyloid positivity (proportion mediated 6.4%, p = 0.045; attenuating to marginal significance with amyloid modeled continuously, p = 0.088).\nCONCLUSIONS: APOE ε4 carriage predicts a steeper plasma p-tau217 trajectory over up to ten years, an effect that is predominantly direct rather than amyloid-mediated. Individual-level p-tau217 trajectory tracks cognitive decline; GFAP does not. Plasma p-tau217 trajectory is informative of cognitive trajectory, although whether it predicts or parallels decline cannot be determined from these data.\nTwo proteins measurable in a blood draw — GFAP (a marker of brain inflammation) and p-tau217 (a marker of Alzheimer’s-specific tau pathology) — can change in older adults at risk for Alzheimer’s disease. A genetic variant called APOE ε4 is the strongest common genetic risk factor for Alzheimer’s. We asked whether having APOE ε4 makes either of these proteins rise faster over time, and whether a faster rise in either protein tracks together with faster decline in memory and brain shrinkage. Using up to 10 years of plasma and cognitive data from 325 older participants in the ADNI study, we found that APOE ε4 carriers showed a faster rise in plasma p-tau217 — but not in plasma GFAP. We then asked how much of this difference could be explained by participants already having signs of amyloid (the upstream Alzheimer’s protein) in their blood. A formal statistical test found that only a small part of APOE’s effect — about 6% — could be attributed to amyloid status; most of the effect was direct. This finding was not fully robust to how amyloid status was measured, so we treat it as exploratory rather than established. APOE ε4’s effect on tau kinetics therefore appears to work mostly through pathways other than its known role in amyloid clearance, though this needs replication. Plasma p-tau217 trajectory tracked closely with cognitive decline at the individual level, while plasma GFAP trajectory did not. The findings suggest that plasma p-tau217 trajectory may be a useful marker of individual disease progression in older adults at risk for Alzheimer’s disease. Replication in independent and more diverse cohorts is needed before clinical use.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42909513/",
+              "evidence_scope": "摘要，非全文"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在整理结果"
+      }
+    },
+    {
+      "kind": "answer",
+      "payload": {
+        "text": "APOE ε4 等位基因是晚发型阿尔茨海默病（AD）最强的遗传风险因子，但它代表的是**概率性风险**而非**确定性诊断**。\n\n1.  **遗传风险关联（Risk Association）**：携带 APOE ε4 会显著增加患病几率。例如，一项基于 ADNI 队列的研究指出，APOE ε4 携带者血浆 p-tau217 的上升轨迹更陡峭，且这种效应主要直接作用于生物标志物变化，而非仅通过淀粉样蛋白介导 [PMID: 42909513]。另一项研究也证实了 APOE ε4 与淀粉样蛋白阳性及认知下降评分（CDR）升高密切相关 [PMID: 42926699]。然而，风险不等于发病：许多 ε4 携带者终身不患 AD，而部分非携带者也会患病。\n2.  **确定性诊断（Definitive Diagnosis）**：AD 的临床确诊通常依赖于排除其他病因后的综合评估，或脑内淀粉样蛋白/tau 病理的生物标志物证据，甚至需死后尸检确认神经原纤维缠结和老年斑。遗传检测本身不能确诊疾病，因为它无法反映环境因素、共病或其他未知遗传变异的影响。\n\n简言之，APOE 状态是评估“可能性”的工具，而确诊需要结合临床症状、影像学及病理生物标志物的综合判断。"
+      }
+    },
+    {
+      "kind": "done",
+      "payload": {
+        "status": "completed"
+      }
+    }
+  ]
+}

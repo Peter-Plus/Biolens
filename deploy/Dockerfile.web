@@ -1,0 +1,9 @@
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PLAYWRIGHT_BROWSERS_PATH=/opt/browsers
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt && python -m playwright install --with-deps chromium && apt-get update && apt-get install -y --no-install-recommends fonts-noto-cjk && rm -rf /var/lib/apt/lists/* && useradd --uid 10001 --create-home biolens && chmod -R a+rX /opt/browsers
+COPY biolens ./biolens
+USER 10001
+ENV BIOLENS_DATA=/data BIOLENS_WEB=1
+CMD ["uvicorn","biolens.api:app","--host","0.0.0.0","--port","8766","--workers","1","--root-path","/web-api","--no-access-log"]

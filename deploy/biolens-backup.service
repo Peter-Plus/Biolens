@@ -1,0 +1,7 @@
+[Unit]
+Description=BioLens SQLite backup
+Requires=docker.service
+After=docker.service
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/biolens/backup.sh

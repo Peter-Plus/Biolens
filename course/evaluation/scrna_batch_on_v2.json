@@ -1,0 +1,127 @@
+{
+  "case": "scrna_batch_on_v2",
+  "run_id": "014b127963fc41848b3cf1a6569afc81",
+  "timestamp": "2026-10-25T16:30:50.249581+00:00",
+  "model": "qwen3.7-flash",
+  "request": {
+    "prompt": "请在PubMed检索单细胞RNA测序批次校正与过度校正的研究。用不超过500字说明如何避免把真实生物差异消除，给出可核查引用和证据局限。",
+    "local": false,
+    "external": true,
+    "mode": "chat",
+    "report_format": "html"
+  },
+  "seconds": 9.5,
+  "status": "completed",
+  "answer": "在单细胞RNA测序（scRNA-seq）分析中，批次校正旨在消除技术噪音，但过度校正（Overcorrection）会抹除真实的生物学差异。为避免这一陷阱，可采取以下策略：\n\n1.  **选择具备“过校正感知”能力的评估工具**\n    传统的整合指标（如ASW或kBET）仅关注批次混合程度，无法识别生物学信号的丢失。最新研究建议采用参考信息驱动的评估框架，如RBET [PMID: 40158033]。该工具能敏感地检测数据是否因过度校正而丧失真实的生物学变异，从而帮助研究者选择更合适的校正方法。\n\n2.  **使用显式解耦生物学信号的方法**\n    在多条件实验设计中，应优先使用能够分离共享状态与条件特异性变化的算法。例如，CAPER [PMID: 42328733] 通过矩阵分解框架，明确区分并保留感兴趣的生物信号，避免将疾病或处理效应误判为批次噪音。类似地，JOINTLY [PMID: 38123569] 被证明在保持细微细胞状态差异方面具有鲁棒性，适合需要保留亚群特征的聚类任务。\n\n3.  **利用对比学习与领域自适应技术**\n    深度学习模型如scCobra [PMID: 39948393] 通过对比学习和领域自适应，能在不假设特定基因表达分布的情况下最小化过校正。这种方法有助于在整合数据的同时，维持跨批次的生物学可比性，特别适用于在线标签转移和大规模数据集整合。\n\n**证据局限：**\n上述文献均为近期发表的研究摘要，尚未提供全文验证。此外，不同数据集的信噪比（SNR）和批次效应大小各异，单一最佳实践并不存在。研究者需结合具体实验设计（如是否混淆了批次与生物学条件）进行敏感性分析，并谨慎解读整合后的差异表达结果。\n\n**本轮检索来源（摘要）：**\n- [JOINTLY: interpretable joint clustering of single-cell transcriptomes.](https://pubmed.ncbi.nlm.nih.gov/38123569/)\n- [Reference-informed evaluation of batch correction for single-cell omics data with overcorrection awareness.](https://pubmed.ncbi.nlm.nih.gov/40158033/)\n- [Condition-Associated Pattern Extraction and Recovery From Multi-Condition Single-Cell RNA-seq Data With CAPER.](https://pubmed.ncbi.nlm.nih.gov/42328733/)\n- [scCobra allows contrastive cell embedding learning with domain adaptation for single cell data integration and harmonization.](https://pubmed.ncbi.nlm.nih.gov/39948393/)",
+  "events": [
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在理解需求"
+      }
+    },
+    {
+      "kind": "policy",
+      "payload": {
+        "external_enabled": true,
+        "explicit_request": true
+      }
+    },
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在思考与选择工具"
+      }
+    },
+    {
+      "kind": "tool_start",
+      "payload": {
+        "name": "search_pubmed",
+        "args": {
+          "query": "single-cell RNA sequencing batch correction overcorrection biological variation",
+          "limit": 10
+        }
+      }
+    },
+    {
+      "kind": "tool_end",
+      "payload": {
+        "name": "search_pubmed",
+        "ok": true,
+        "result": {
+          "query": "single-cell RNA sequencing batch correction overcorrection biological variation",
+          "total": 4,
+          "papers": [
+            {
+              "pmid": "38123569",
+              "title": "JOINTLY: interpretable joint clustering of single-cell transcriptomes.",
+              "journal": "Nature communications",
+              "year": "2023",
+              "publication_types": [
+                "Journal Article",
+                "Research Support, Non-U.S. Gov't"
+              ],
+              "abstract": "Single-cell and single-nucleus RNA-sequencing (sxRNA-seq) is increasingly being used to characterise the transcriptomic state of cell types at homeostasis, during development and in disease. However, this is a challenging task, as biological effects can be masked by technical variation. Here, we present JOINTLY, an algorithm enabling joint clustering of sxRNA-seq datasets across batches. JOINTLY performs on par or better than state-of-the-art batch integration methods in clustering tasks and outperforms other intrinsically interpretable methods. We demonstrate that JOINTLY is robust against over-correction while retaining subtle cell state differences between biological conditions and highlight how the interpretation of JOINTLY can be used to annotate cell types and identify active signalling programs across cell types and pseudo-time. Finally, we use JOINTLY to construct a reference atlas of white adipose tissue (WATLAS), an expandable and comprehensive community resource, in which we describe four adipocyte subpopulations and map compositional changes in obesity and between depots.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/38123569/",
+              "evidence_scope": "摘要，非全文"
+            },
+            {
+              "pmid": "40158033",
+              "title": "Reference-informed evaluation of batch correction for single-cell omics data with overcorrection awareness.",
+              "journal": "Communications biology",
+              "year": "2025",
+              "publication_types": [
+                "Journal Article"
+              ],
+              "abstract": "Batch effect correction (BEC) is fundamental to integrate multiple single-cell RNA sequencing datasets, and its success is critical to empower in-depth interrogation for biological insights. However, no simple metric is available to evaluate BEC performance with sensitivity to data overcorrection, which erases true biological variations and leads to false biological discoveries. Here, we propose RBET, a reference-informed statistical framework for evaluating the success of BEC. Using extensive simulations and six real data examples including scRNA-seq and scATAC-seq datasets with different numbers of batches, batch effect sizes and numbers of cell types, we demonstrate that RBET evaluates the performance of BEC methods more fairly with biologically meaningful insights from data, while other methods may lead to false results. Moreover, RBET is computationally efficient, sensitive to overcorrection and robust to large batch effect sizes. Thus, RBET provides a robust guideline on selecting case-specific BEC method, and the concept of RBET is extendable to other modalities.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/40158033/",
+              "evidence_scope": "摘要，非全文"
+            },
+            {
+              "pmid": "42328733",
+              "title": "Condition-Associated Pattern Extraction and Recovery From Multi-Condition Single-Cell RNA-seq Data With CAPER.",
+              "journal": "Advanced science (Weinheim, Baden-Wurttemberg, Germany)",
+              "year": "2026",
+              "publication_types": [
+                "Journal Article"
+              ],
+              "abstract": "A central challenge in multi-condition single-cell RNA sequencing (scRNA-seq) data analysis is the disentanglement of true biological signals from unwanted variations in complex experimental designs. Current statistical and machine learning-based methods struggle with this task, often providing only visualizable embeddings, over-correcting and discarding biological signal, or failing to resolve cell-type-specific responses. Here, we present CAPER, a matrix factorization framework that explicitly disentangles shared biological states from condition-specific variations. CAPER directly outputs an interpretable, batch-corrected expression matrix in which the signal of interest is preserved and isolated. The performance of CAPER is validated using extensive simulations, followed by three real-world multi-condition scRNA-seq data applications, representing distinct signal-to-noise ratio (SNR) scenarios: a controlled immune stimulation in PBMCs with high SNR, a tumor-microenvironment dataset from LUAD with confounded SNR, and a complex autoimmune disease dataset from T1D with low SNR. Across these settings, CAPER yields interpretable latent factors linked to relevant biology, accurately recovers key differentially expressed genes, and correctly identifies the most responsive cell populations. CAPER is a robust and interpretable tool for recovering biological signals from multi-condition single-cell RNA-seq data, enabling reliable discovery in disease research and functional genomics.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42328733/",
+              "evidence_scope": "摘要，非全文"
+            },
+            {
+              "pmid": "39948393",
+              "title": "scCobra allows contrastive cell embedding learning with domain adaptation for single cell data integration and harmonization.",
+              "journal": "Communications biology",
+              "year": "2025",
+              "publication_types": [
+                "Journal Article"
+              ],
+              "abstract": "The rapid advancement of single-cell technologies has created an urgent need for effective methods to integrate and harmonize single-cell data. Technical and biological variations across studies complicate data integration, while conventional tools often struggle with reliance on gene expression distribution assumptions and over-correction. Here, we present scCobra, a deep generative neural network designed to overcome these challenges through contrastive learning with domain adaptation. scCobra effectively mitigates batch effects, minimizes over-correction, and ensures biologically meaningful data integration without assuming specific gene expression distributions. It enables online label transfer across datasets with batch effects, allowing continuous integration of new data without retraining. Additionally, scCobra supports batch effect simulation, advanced multi-omic integration, and scalable processing of large datasets. By integrating and harmonizing datasets from similar studies, scCobra expands the available data for investigating specific biological problems, improving cross-study comparability, and revealing insights that may be obscured in isolated datasets.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/39948393/",
+              "evidence_scope": "摘要，非全文"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "status",
+      "payload": {
+        "text": "正在整理结果"
+      }
+    },
+    {
+      "kind": "answer",
+      "payload": {
+        "text": "在单细胞RNA测序（scRNA-seq）分析中，批次校正旨在消除技术噪音，但过度校正（Overcorrection）会抹除真实的生物学差异。为避免这一陷阱，可采取以下策略：\n\n1.  **选择具备“过校正感知”能力的评估工具**\n    传统的整合指标（如ASW或kBET）仅关注批次混合程度，无法识别生物学信号的丢失。最新研究建议采用参考信息驱动的评估框架，如RBET [PMID: 40158033]。该工具能敏感地检测数据是否因过度校正而丧失真实的生物学变异，从而帮助研究者选择更合适的校正方法。\n\n2.  **使用显式解耦生物学信号的方法**\n    在多条件实验设计中，应优先使用能够分离共享状态与条件特异性变化的算法。例如，CAPER [PMID: 42328733] 通过矩阵分解框架，明确区分并保留感兴趣的生物信号，避免将疾病或处理效应误判为批次噪音。类似地，JOINTLY [PMID: 38123569] 被证明在保持细微细胞状态差异方面具有鲁棒性，适合需要保留亚群特征的聚类任务。\n\n3.  **利用对比学习与领域自适应技术**\n    深度学习模型如scCobra [PMID: 39948393] 通过对比学习和领域自适应，能在不假设特定基因表达分布的情况下最小化过校正。这种方法有助于在整合数据的同时，维持跨批次的生物学可比性，特别适用于在线标签转移和大规模数据集整合。\n\n**证据局限：**\n上述文献均为近期发表的研究摘要，尚未提供全文验证。此外，不同数据集的信噪比（SNR）和批次效应大小各异，单一最佳实践并不存在。研究者需结合具体实验设计（如是否混淆了批次与生物学条件）进行敏感性分析，并谨慎解读整合后的差异表达结果。\n\n**本轮检索来源（摘要）：**\n- [JOINTLY: interpretable joint clustering of single-cell transcriptomes.](https://pubmed.ncbi.nlm.nih.gov/38123569/)\n- [Reference-informed evaluation of batch correction for single-cell omics data with overcorrection awareness.](https://pubmed.ncbi.nlm.nih.gov/40158033/)\n- [Condition-Associated Pattern Extraction and Recovery From Multi-Condition Single-Cell RNA-seq Data With CAPER.](https://pubmed.ncbi.nlm.nih.gov/42328733/)\n- [scCobra allows contrastive cell embedding learning with domain adaptation for single cell data integration and harmonization.](https://pubmed.ncbi.nlm.nih.gov/39948393/)"
+      }
+    },
+    {
+      "kind": "done",
+      "payload": {
+        "status": "completed"
+      }
+    }
+  ]
+}

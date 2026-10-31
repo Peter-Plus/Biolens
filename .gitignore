@@ -1,0 +1,51 @@
+# Dependencies and bundled runtimes
+node_modules/
+.venv/
+venv/
+/runtime/*
+!/runtime/.gitkeep
+
+# Build outputs, reports and local application/account data
+/dist/
+/release/
+/artifacts/
+/.local/
+/course/*.html
+
+# Python, test and editor caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
+*.egg-info/
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Credentials and private databases (keep templates if added later)
+.env
+.env.*
+!.env.example
+!*.env.example
+secrets.env
+key.txt
+服务器.txt
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
